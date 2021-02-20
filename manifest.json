@@ -5,8 +5,7 @@
   "permissions": [
     "storage",
     "declarativeContent",
-    "activeTab",
-    "http://code.jquery.com/jquery-latest.min.js"],
+    "activeTab"],
   "background": {
     "page": "background.html",
     "persistent": false
@@ -16,12 +15,12 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://oper.zeppelin/*"],
+      "matches": ["http://zeppelin/*", "http://*.zeppelin/*"],
       "run_at": "document_idle",
       "js": ["contentScript.js"]
     }
   ],
-  "web_accessible_resources": ["script.js"],
+  "web_accessible_resources": ["script.js", "error.mp3", "success.mp3"],
   "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
 
 

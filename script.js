@@ -43,15 +43,17 @@ let observer = new MutationObserver(mutationRecords => {
 
 
     ///
-    console.log(mutationRecords);
+    //console.log(mutationRecords);
     if(mutationRecords[0].target.parentNode.className == "ng-binding"){
         console.log(mutationRecords[0].oldValue +'>>>'+ mutationRecords[0].target.data);
     }
     if(mutationRecords[0].target.data == ' DONE '){
         document.getElementsByTagName('title')[0].text = '[DONE]'+pageTitle;
         beep('Success');
-        console.log(mutationRecords);
-        var elem = document.getElementById(mutationRecords[0].target.parentElement.parentElement.id.slice(0,35) + '_paragraphColumn_main');
+        //console.log(mutationRecords);
+        var idOfElem = mutationRecords[0].target.parentElement.parentElement.id;
+        //console.log('id', idOfElem);
+        var elem = document.getElementById(idOfElem.slice(0,idOfElem.indexOf('_control')) + '_paragraphColumn_main');
         elem.style.cssText = 'background-color: greenyellow';
         elem.addEventListener('mouseover', function(){
             elem.style.cssText = 'transition: background-color 5s ease';
@@ -61,7 +63,9 @@ let observer = new MutationObserver(mutationRecords => {
     if(mutationRecords[0].target.data == ' ERROR '){
         document.getElementsByTagName('title')[0].text = '[Error]'+pageTitle;
         beep('Error');
-        var elem = document.getElementById(mutationRecords[0].target.parentElement.parentElement.id.slice(0,35) + '_paragraphColumn_main');
+        var idOfElem = mutationRecords[0].target.parentElement.parentElement.id;
+        //console.log('id', idOfElem);
+        var elem = document.getElementById(idOfElem.slice(0,idOfElem.indexOf('_control')) + '_paragraphColumn_main');
         elem.style.cssText = 'background-color: orangered';
         elem.addEventListener('mouseover', function(){
             elem.style.cssText = 'transition: background-color 5s ease';

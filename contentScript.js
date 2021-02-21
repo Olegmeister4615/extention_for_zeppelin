@@ -23,14 +23,26 @@ s3.onload = function() {
 (document.head || document.documentElement).appendChild(s2);
 (document.head || document.documentElement).appendChild(s3);
 
-document.addEventListener('myCustomEvent', function (e) {
-    var data = e.detail;
-    console.log('received', data);
-});
-document.addEventListener('myCustomEvent', function (e) {
-    var data = e.detail;
-    console.log('received', data);
+
+/*
+chrome.runtime.sendMessage({method: "getStatus"}, function(response) {
+    console.log(response);
 });
 
+chrome.storage.sync.get('color', function(items) {
+    console.log('Settings retrieved', items);
+});
+*/
+window.onload = function() {
+    setTimeout(
+        () => {
+            var username = document.getElementsByClassName('username')[0].innerText;
+            console.log(username);
+            chrome.runtime.sendMessage({theme: "username", username: username}, function(response) {
+                console.log(response);
+              });
+        },
+        4000
+      );
 
-
+}

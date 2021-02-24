@@ -1,17 +1,30 @@
 {
-  "name": "Getting Started Example",
+  "name": "Zeppelin notification",
   "version": "1.0",
-  "description": "Build an Extension!",
+  "description": "Уведомления отработки параграфов, подсвечивание отработанных параграфов, статус параграфа в заголовке страницы",
   "permissions": [
     "storage",
     "declarativeContent",
-    "activeTab"],
+    "activeTab",
+    "tabs"],
   "background": {
     "page": "background.html",
     "persistent": false
   },
   "page_action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/apple-touch-icon(4).png",
+      "32": "images/apple-touch-icon(3).png",
+      "48": "images/apple-touch-icon(2).png",
+      "128": "images/apple-touch-icon(1).png"
+    }
+  },
+  "icons": {
+    "16": "images/apple-touch-icon(4).png",
+    "32": "images/apple-touch-icon(3).png",
+    "48": "images/apple-touch-icon(2).png",
+    "128": "images/apple-touch-icon(1).png"
   },
   "content_scripts": [
     {
@@ -20,9 +33,8 @@
       "js": ["contentScript.js"]
     }
   ],
-  "web_accessible_resources": ["script.js", "error.mp3", "success.mp3"],
+  "web_accessible_resources": ["script.js", "audio_samples/error.mp3", "audio_samples/success.mp3"],
   "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
-
 
   "manifest_version": 2
 }
